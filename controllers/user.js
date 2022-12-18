@@ -7,8 +7,7 @@ const getAllUsers = (req, res) => {
 
 // Adds a new user to DB
 const addUser = (req, res) => {
-  console.log("Hello");
-  res.status(200).send("Add New User");
+  res.status(200).json(req.body);
 };
 
 // Get a single user using their  userId
