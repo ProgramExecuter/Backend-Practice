@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/ProgramExecuter/Backend-Practice/issues"
   },
-  "homepage": "https://github.com/ProgramExecuter/Backend-Practice#readme"
+  "homepage": "https://github.com/ProgramExecuter/Backend-Practice#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
 }
