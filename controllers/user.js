@@ -1,3 +1,5 @@
+const User = require("../models/user");
+
 // Returns the list of all users from DB
 const getAllUsers = (req, res) => {
   res.send("Hello All Users");
