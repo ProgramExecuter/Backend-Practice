@@ -18,7 +18,13 @@ const getAllUsers = async (req, res) => {
 
 // Adds a new user to DB
 const addUser = (req, res) => {
-  res.status(200).json(req.body);
+  const newUser = new User(req.body);
+
+  // Save the new User in DB
+  newUser.save();
+
+  // Return the result
+  res.status(201).json({ ok: true, createdUser: newUser });
 };
 
 // Get a single user using their  userId
