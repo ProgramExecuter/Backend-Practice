@@ -2,13 +2,18 @@ const User = require("../models/user");
 
 // Returns the list of all users from DB
 const getAllUsers = async (req, res) => {
-  // Fetch the list of users from DB
-  const listOfUsers = await User.find();
+  try {
+    // Fetch the list of users from DB
+    const listOfUsers = await User.find();
 
-  // Return the data
-  res
-    .status(200)
-    .json({ ok: true, count: listOfUsers.length, data: listOfUsers });
+    // Return the data
+    res
+      .status(200)
+      .json({ ok: true, count: listOfUsers.length, data: listOfUsers });
+  } catch (err) {
+    // Return the error
+    res.status(500).json({ ok: false, error: err });
+  }
 };
 
 // Adds a new user to DB
