@@ -39,7 +39,7 @@ const getUser = async (req, res) => {
     const username = req.params.username;
 
     // Find the user with 'username'
-    const foundUser = await User.find({ username: username });
+    const foundUser = await User.find({ username });
 
     // User not found
     if (foundUser.length === 0)
@@ -56,8 +56,20 @@ const getUser = async (req, res) => {
 };
 
 // Delete a single user using their  userId
-const deleteUser = (req, res) => {
-  res.status(200).send(`Delete the user ${req.params.userId}`);
+const deleteUser = async (req, res) => {
+  const username = req.params.username;
+
+  // Find the user by 'username' and delete from DB
+  const deletedUser = await User.findOneAndDelete({ username });
+
+  // User not found
+  if (!deletedUser)
+    return res
+      .status(404)
+      .json({ ok: false, error: { message: "User not found" } });
+
+  // Return the response after deleting
+  return res.status(200).json({ ok: true, deletedUser });
 };
 
 // Edit a user using their  userId
