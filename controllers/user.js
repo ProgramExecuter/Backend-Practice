@@ -18,13 +18,19 @@ const getAllUsers = async (req, res) => {
 
 // Adds a new user to DB
 const addUser = (req, res) => {
-  const newUser = new User(req.body);
+  try {
+    // Create the new user using the User model
+    const newUser = new User(req.body);
 
-  // Save the new User in DB
-  newUser.save();
+    // Save the new User in DB
+    newUser.save();
 
-  // Return the result
-  res.status(201).json({ ok: true, createdUser: newUser });
+    // Return the result
+    res.status(201).json({ ok: true, createdUser: newUser });
+  } catch (err) {
+    // Return the error encountered
+    res.status(500).json({ ok: false, error: err });
+  }
 };
 
 // Get a single user using their  userId
