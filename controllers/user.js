@@ -1,8 +1,14 @@
 const User = require("../models/user");
 
 // Returns the list of all users from DB
-const getAllUsers = (req, res) => {
-  res.send("Hello All Users");
+const getAllUsers = async (req, res) => {
+  // Fetch the list of users from DB
+  const listOfUsers = await User.find();
+
+  // Return the data
+  res
+    .status(200)
+    .json({ ok: true, count: listOfUsers.length, data: listOfUsers });
 };
 
 // Adds a new user to DB

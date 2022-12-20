@@ -12,6 +12,7 @@ dotenv.config({ path: "config/.env" });
 
 //////////////
 // DB Connect
+mongoose.set("strictQuery", true); // To supress warning
 mongoose
   .connect(process.env.MONGOURI)
   .then(() => {
