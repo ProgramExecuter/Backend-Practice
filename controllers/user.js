@@ -57,19 +57,24 @@ const getUser = async (req, res) => {
 
 // Delete a single user using their  userId
 const deleteUser = async (req, res) => {
-  const username = req.params.username;
+  try {
+    const username = req.params.username;
 
-  // Find the user by 'username' and delete from DB
-  const deletedUser = await User.findOneAndDelete({ username });
+    // Find the user by 'username' and delete from DB
+    const deletedUser = await User.findOneAndDelete({ username });
 
-  // User not found
-  if (!deletedUser)
-    return res
-      .status(404)
-      .json({ ok: false, error: { message: "User not found" } });
+    // User not found
+    if (!deletedUser)
+      return res
+        .status(404)
+        .json({ ok: false, error: { message: "User not found" } });
 
-  // Return the response after deleting
-  return res.status(200).json({ ok: true, deletedUser });
+    // Return the response after deleting
+    return res.status(200).json({ ok: true, deletedUser });
+  } catch (err) {
+    // Return the error encountered
+    return res.status(500).json({ ok: false, error: err });
+  }
 };
 
 // Edit a user using their  userId
