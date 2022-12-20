@@ -87,6 +87,11 @@ const editUser = async (req, res) => {
   try {
     const username = req.params.username;
 
+    if (req.body.username)
+      return res
+        .status(400)
+        .json({ ok: false, error: { message: "username is immutable" } });
+
     // Find the user with 'username' and update
     const updatedUser = await User.findOneAndUpdate(
       { username },
