@@ -84,22 +84,27 @@ const deleteUser = async (req, res) => {
 /////////////
 // Edit a user using their 'username'
 const editUser = async (req, res) => {
-  const username = req.params.username;
+  try {
+    const username = req.params.username;
 
-  // Find the user with 'username' and update
-  const updatedUser = await User.findOneAndUpdate(
-    { username },
-    { $set: req.body }
-  );
+    // Find the user with 'username' and update
+    const updatedUser = await User.findOneAndUpdate(
+      { username },
+      { $set: req.body }
+    );
 
-  // User not found
-  if (!updatedUser)
-    return res
-      .status(404)
-      .json({ ok: false, error: { message: "User not found" } });
+    // User not found
+    if (!updatedUser)
+      return res
+        .status(404)
+        .json({ ok: false, error: { message: "User not found" } });
 
-  // Return the response after updating
-  return res.status(200).json({ ok: true, updatedUser });
+    // Return the response after updating
+    return res.status(200).json({ ok: true, updatedUser });
+  } catch (err) {
+    // Return the error encountered
+    return res.status(500).json({ ok: false, error: err });
+  }
 };
 
 module.exports = { getAllUsers, addUser, getUser, deleteUser, editUser };
