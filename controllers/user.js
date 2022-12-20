@@ -33,19 +33,26 @@ const addUser = async (req, res) => {
   }
 };
 
-// Get a single user using their  userId
+// Get a single user using their 'username'
 const getUser = async (req, res) => {
-  const username = req.params.username;
+  try {
+    const username = req.params.username;
 
-  // Find the user with 'username'
-  const foundUser = await User.find({ username: username });
+    // Find the user with 'username'
+    const foundUser = await User.find({ username: username });
 
-  // User not found
-  if (foundUser.length === 0)
-    return res.status(404).json({ ok: false, error: "User not found" });
+    // User not found
+    if (foundUser.length === 0)
+      return res
+        .status(404)
+        .json({ ok: false, error: { message: "User not found" } });
 
-  // Return the result(data)
-  return res.status(200).json({ ok: true, user: foundUser[0] });
+    // Return the result(data)
+    return res.status(200).json({ ok: true, user: foundUser[0] });
+  } catch (err) {
+    // Return the error encountered
+    return res.status(500).json({ ok: false, error: err });
+  }
 };
 
 // Delete a single user using their  userId
