@@ -15,12 +15,12 @@ router.get("/", getAllUsers);
 router.post("/", addUser);
 
 // Get a particular user
-router.get("/:userId", getUser);
+router.get("/:username", getUser);
 
 // Delete a particular user
-router.delete("/:userId", deleteUser);
+router.delete("/:username", deleteUser);
 
 // Edit a particular user
-router.patch("/:userId", editUser);
+router.patch("/:username", editUser);
 
 module.exports = router;

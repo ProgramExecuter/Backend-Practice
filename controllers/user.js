@@ -7,35 +7,45 @@ const getAllUsers = async (req, res) => {
     const listOfUsers = await User.find();
 
     // Return the data
-    res
+    return res
       .status(200)
       .json({ ok: true, count: listOfUsers.length, data: listOfUsers });
   } catch (err) {
     // Return the error
-    res.status(500).json({ ok: false, error: err });
+    return res.status(500).json({ ok: false, error: err });
   }
 };
 
 // Adds a new user to DB
-const addUser = (req, res) => {
+const addUser = async (req, res) => {
   try {
     // Create the new user using the User model
     const newUser = new User(req.body);
 
     // Save the new User in DB
-    newUser.save();
+    await newUser.save();
 
     // Return the result
-    res.status(201).json({ ok: true, createdUser: newUser });
+    return res.status(201).json({ ok: true, createdUser: newUser });
   } catch (err) {
     // Return the error encountered
-    res.status(500).json({ ok: false, error: err });
+    return res.status(500).json({ ok: false, error: err });
   }
 };
 
 // Get a single user using their  userId
-const getUser = (req, res) => {
-  res.status(200).send(`User with ${req.params.userId}`);
+const getUser = async (req, res) => {
+  const username = req.params.username;
+
+  // Find the user with 'username'
+  const foundUser = await User.find({ username: username });
+
+  // User not found
+  if (foundUser.length === 0)
+    return res.status(404).json({ ok: false, error: "User not found" });
+
+  // Return the result(data)
+  return res.status(200).json({ ok: true, user: foundUser[0] });
 };
 
 // Delete a single user using their  userId
