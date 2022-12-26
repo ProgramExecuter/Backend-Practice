@@ -8,7 +8,7 @@
    `git clone --branch 001-UserDetails_API https://github.com/ProgramExecuter/Backend-Practice.git`
 
 3. Change to main directory -
-   `cd 001-UserDetails_API`
+   `cd Backend-Practice`
 
 4. Install dependencies -
    `npm install`
@@ -25,4 +25,4 @@
 
 <br/>
 
-<h2><a href="https://documenter.getpostman.com/view/12803747/2s8Z6vaErk">API Documentation</a></h2>
+<p style="font-size:1.75rem; font-weight: 600; text-decoration: underline"><a href="https://documenter.getpostman.com/view/12803747/2s8Z6vaErk">API Documentation</a></p>
