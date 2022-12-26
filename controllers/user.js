@@ -22,18 +22,27 @@ const getAllUsers = async (req, res) => {
 const addUser = async (req, res) => {
   try {
     // Validate if the username is correct
-    let matchedUsername = newUser.username.match(
+    let matchedUsername = req.body.username.match(
       /(_*[A-Za-z0-9]+)(_*[A-Za-z0-9]*)*/
     );
 
-    if (!matchedUsername || matchedUsername[0] != newUser.username) {
-      console.log("Not Matching");
+    if (!matchedUsername || matchedUsername[0] != req.body.username) {
       return res.status(500).json({
         ok: false,
         error: {
           message: `The username passed is not valid, below are rules - \n
         \t 1. Username must contain only [a-z] [A-Z] [0-9] and _ characters.
         \t 2. Username must contain at least one character instead of _.`,
+        },
+      });
+    }
+
+    // Invalid Date inputted
+    if (new Date(req.body.dateOfBirth) == "Invalid Date") {
+      return res.status(400).json({
+        ok: false,
+        error: {
+          message: "Invalid Date",
         },
       });
     }
