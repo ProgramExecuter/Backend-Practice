@@ -14,7 +14,7 @@
 <tr>
 <td>2.</td>
 <td>Authentication API</td>
-<td><a href="https://github.com/ProgramExecuter/Backend-Practice/tree/002-Authentication_API" target="_blank">https://github.com/ProgramExecuter/Backend-Practice/tree/001-UserDetails_API</a></td>
+<td><a href="https://github.com/ProgramExecuter/Backend-Practice/tree/002-Authentication_API">https://github.com/ProgramExecuter/Backend-Practice/tree/002-Authentication_API</a></td>
 </tr>
 
 </table>
