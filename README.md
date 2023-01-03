@@ -23,4 +23,4 @@
 
 <br/>
 
-<p style="font-size:1.75rem; font-weight: 600; text-decoration: underline"><a href="https://documenter.getpostman.com/view/12803747/2s8Z6vaErk">API Documentation</a></p>
+<p style="font-size:1.75rem; font-weight: 600; text-decoration: underline"><a href="https://documenter.getpostman.com/view/12803747/2s8Z711sJL">API Documentation</a></p>
