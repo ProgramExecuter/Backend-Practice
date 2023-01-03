@@ -1,4 +1,4 @@
-<h1>User Details API</h1>
+<h1>Authentication API</h1>
 
 <h2>Follow below steps to run this project locally -</h2>
 
